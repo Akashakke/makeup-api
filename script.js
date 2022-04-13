@@ -27,15 +27,14 @@ document.body.append(label,br,input,br1,button);
 
 
 async function foo(){
-    
-        let cc=document.getElementById("text").value;
+    try{let cc=document.getElementById("text").value;
     let res=await fetch(`https://makeup-api.herokuapp.com/api/v1/products.json?brand=${cc}`);
     let data=await res.json();
     console.log(data);
     for(var i=0;i<data.length;i++){
         var ele=document.createElement("div")
         ele.style.color="black";
-        ele.style.fontSize="12px";
+        ele.style.fontSize="20px";
         ele.innerHTML=`<div class="row" >
         <img src="${data[i].image_link}" class="col-md-3" alt="Image not available">
           <p class="col-md-9">
@@ -48,6 +47,10 @@ async function foo(){
         </div>`
         document.body.append(ele);
     }
+       } catch{
+    console.log(error)
+    }
+        
 
     
 
